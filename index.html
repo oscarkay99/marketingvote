@@ -1,4 +1,4 @@
- <html lang="en">
+<html lang="en">
    <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,39 +15,72 @@
        }
        .form-container {
          background: white;
-         padding: 20px;
-         border-radius: 8px;
-         box-shadow: 0 0 10px rgba(0,0,0,0.1);
+         padding: 30px;
+         border-radius: 12px;
+         box-shadow: 0 4px 20px rgba(0,0,0,0.15);
          text-align: center;
+         max-width: 400px;
+         width: 100%;
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+       }
+       .form-container:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 6px 25px rgba(0,0,0,0.2);
        }
        h1 {
          font-size: 24px;
          margin-bottom: 20px;
+         color: #333;
        }
        label {
          display: block;
-         margin: 10px 0;
+         margin: 15px 0 5px;
          font-size: 16px;
+         color: #555;
+         text-align: left;
+       }
+       input[type="text"], select {
+         padding: 12px;
+         font-size: 16px;
+         width: 100%;
+         margin: 10px 0;
+         border: 1px solid #ddd;
+         border-radius: 8px;
+         box-sizing: border-box;
+         transition: border-color 0.3s ease, box-shadow 0.3s ease;
+       }
+       input[type="text"]:focus, select:focus {
+         border-color: #007BFF;
+         box-shadow: 0 0 8px rgba(0,123,255,0.3);
+         outline: none;
        }
        select {
-         padding: 8px;
-         font-size: 16px;
-         width: 200px;
-         margin: 10px 0;
-         border-radius: 5px;
+         appearance: none;
+         background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="%23555" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 12px center;
+         background-size: 12px;
        }
        button {
          background-color: #007BFF;
          color: white;
-         padding: 10px 20px;
+         padding: 12px 24px;
          border: none;
-         border-radius: 5px;
+         border-radius: 8px;
          cursor: pointer;
          font-size: 16px;
-         margin-top: 10px;
+         margin-top: 20px;
+         transition: background-color 0.3s ease, transform 0.2s ease;
        }
        button:hover {
          background-color: #0056b3;
+         transform: translateY(-2px);
+       }
+       button:active {
+         transform: translateY(0);
+       }
+       p {
+         font-size: 16px;
+         color: #555;
+         margin-bottom: 20px;
        }
      </style>
    </head>
@@ -56,17 +89,16 @@
        <h1>Marketing Circle Coordinator Vote</h1>
        <form action="https://script.google.com/macros/s/AKfycbwMD5E6SuXJm2-6hAAGbvuW9oeq5AbTZwMUmP61Qlti1Y48sMpZEmCt0uwTfReLHwItdA/exec" method="POST">
          <p>Select the candidate for the next Marketing Circle Coordinator:</p>
-        <label for="id">Id:</label>
-        <input type="text", id="id", name="id"><br><br>
+         <label for="id">ID:</label>
+         <input type="text" id="id" name="id" required>
          <label for="candidate">Choose a candidate:</label>
          <select id="candidate" name="candidate" required>
            <option value="" disabled selected>Select a candidate</option>
-           <option value="candidate1">Candidate 1</option>
-           <option value="candidate2">Candidate 2</option>
+           <option value="Rakozi">Rakozi</option>
+           <option value="Abdul Rahman">Abdul Rahman</option>
          </select>
-         <br>
          <button type="submit">Submit Vote</button>
        </form>
      </div>
    </body>
-   </html>
+</html>
