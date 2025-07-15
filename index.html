@@ -47,6 +47,25 @@
       font-size: 16px;
       margin-top: 10px;
     }
+    #success-message {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(19, 7, 45, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 1000;
+    }
+    .neon-text {
+      font-size: 36px;
+      font-weight: bold;
+      color: #6610F2;
+      text-shadow: 0 0 10px #6610F2, 0 0 20px #6610F2, 0 0 30px #FD7E14;
+      animation: flicker 1.5s infinite alternate;
+    }
     button:hover {
       background-color: #0056b3;
     }
@@ -55,7 +74,7 @@
 <body>
   <div class="form-container">
     <h1>Marketing Circle Coordinator Vote</h1>
-    <form action="https://script.google.com/macros/s/AKfycbyGVqcT1B3WWEpW8VSEm_fqIL_AXZmOe0UlSkHF_v4nEFnbvulhf3ZpuyW1QMTq0ymcgQ/exec" method="POST">
+    <form>
       <p>Select the candidate for the next Marketing Circle Coordinator:</p>
       <label for="candidate">Choose a candidate:</label>
       <select id="candidate" name="candidate" required>
@@ -66,6 +85,40 @@
       <br>
       <button type="submit">Submit Vote</button>
     </form>
+    <div id="success-message">
+      <div class="neon-text">Success: Vote recorded.</div>
+    </div>
   </div>
+
+  <script>
+    document.getElementById('vote-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from redirecting
+
+      const formData = new FormData(this);
+      const url = 'https://script.google.com/macros/s/AKfycbyGVqcT1B3WWEpW8VSEm_fqIL_AXZmOe0UlSkHF_v4nEFnbvulhf3ZpuyW1QMTq0ymcgQ/exec'; // Replace with your Web App URL
+
+      fetch(url, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === 'success') {
+          document.getElementById('vote-form').style.display = 'none'; // Hide the form
+          document.getElementById('success-message').style.display = 'block'; // Show success message
+          setTimeout(() => {
+            document.getElementById('success-message').style.display = 'none'; // Hide after 3 seconds
+            document.getElementById('vote-form').style.display = 'block'; // Show form again
+            document.getElementById('candidate').value = ''; // Reset dropdown
+          }, 3000);
+        } else {
+          alert('Error: ' + data.message);
+        }
+      })
+      .catch(error => {
+        alert('Error submitting vote: ' + error.message);
+      });
+    });
+  </script>
 </body>
 </html>
