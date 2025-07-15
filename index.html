@@ -1,107 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Anonymous Coordinator Vote</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f4f4f4;
-    }
-    .form-container {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 300px;
-    }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin: 10px 0;
-      font-size: 16px;
-    }
-    select {
-      padding: 8px;
-      font-size: 16px;
-      width: 100%;
-      margin: 10px 0;
-      border-radius: 5px;
-    }
-    button {
-      background-color: #007BFF;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    #success-message {
-      display: none;
-      color: green;
-      font-size: 18px;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <div class="form-container">
-    <h1>Marketing Circle Coordinator Vote</h1>
-    <form id="voteForm">
-      <p>Select the candidate for the next Marketing Circle Coordinator:</p>
-      <label for="candidate">Choose a candidate:</label>
-      <select id="candidate" name="candidate" required>
-        <option value="" disabled selected>Select a candidate</option>
-        <option value="Rakozi">Rakozi</option>
-        <option value="Abdul Rahman">Abdul Rahman</option>
-      </select>
-      <br>
-      <button type="submit">Submit Vote</button>
-    </form>
-    <div id="success-message">✅ Thank you! Your vote has been submitted anonymously.</div>
-  </div>
-
-  <script>
-    const form = document.getElementById('voteForm');
-    const successMessage = document.getElementById('success-message');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent form from redirecting
-
-      const formData = new FormData(form);
-      
-      fetch('https://script.google.com/macros/s/AKfycbyGVqcT1B3WWEpW8VSEm_fqIL_AXZmOe0UlSkHF_v4nEFnbvulhf3ZpuyW1QMTq0ymcgQ/exec', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => {
-        if (response.ok) {
-          form.style.display = 'none';           // Hide the form
-          successMessage.style.display = 'block'; // Show success message
-        } else {
-          alert('There was a problem submitting your vote. Please try again.');
-        }
-      })
-      .catch(error => {
-        console.error('Error!', error.message);
-        alert('There was a network error. Please try again later.');
-      });
-    });
-  </script>
-</body>
-</html>
+ <html lang="en">
+   <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Anonymous Coordinator Vote</title>
+     <style>
+       body {
+         font-family: Arial, sans-serif;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+         margin: 0;
+         background-color: #f4f4f4;
+       }
+       .form-container {
+         background: white;
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 0 10px rgba(0,0,0,0.1);
+         text-align: center;
+       }
+       h1 {
+         font-size: 24px;
+         margin-bottom: 20px;
+       }
+       label {
+         display: block;
+         margin: 10px 0;
+         font-size: 16px;
+       }
+       select {
+         padding: 8px;
+         font-size: 16px;
+         width: 200px;
+         margin: 10px 0;
+         border-radius: 5px;
+       }
+       button {
+         background-color: #007BFF;
+         color: white;
+         padding: 10px 20px;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         font-size: 16px;
+         margin-top: 10px;
+       }
+       button:hover {
+         background-color: #0056b3;
+       }
+     </style>
+   </head>
+   <body>
+     <div class="form-container">
+       <h1>Marketing Circle Coordinator Vote</h1>
+       <form action="https://script.google.com/macros/s/AKfycbyGVqcT1B3WWEpW8VSEm_fqIL_AXZmOe0UlSkHF_v4nEFnbvulhf3ZpuyW1QMTq0ymcgQ/exec" method="POST">
+         <p>Select the candidate for the next Marketing Circle Coordinator:</p>
+         <label for="candidate">Choose a candidate:</label>
+         <select id="candidate" name="candidate" required>
+           <option value="" disabled selected>Select a candidate</option>
+           <option value="candidate1">Candidate 1</option>
+           <option value="candidate2">Candidate 2</option>
+         </select>
+         <br>
+         <button type="submit">Submit Vote</button>
+       </form>
+     </div>
+   </body>
+   </html>
